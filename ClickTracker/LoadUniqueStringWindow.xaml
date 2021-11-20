@@ -1,0 +1,41 @@
+﻿ <!--// Copyright 2021 Dennis Baeckstroem-->
+    <Window x:Class="ClickTracker.LoadUniqueStringWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClickTracker"
+        mc:Ignorable="d"
+        Title="LoadUniqueStringWindow" Height="100" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" MinWidth="300" MinHeight="100" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid ShowGridLines="False">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Do you have a previous ID you wish to use?</TextBlock>
+            <TextBox x:Name="TBo_LoadUniqueStringID" Margin="2,0,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinWidth="250" MinHeight="20"/>
+            <TextBlock IsHitTestVisible="False" Text="Enter ID Here" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TBo_LoadUniqueStringID}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BTN_AddUniqueID" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="80" MinHeight="25">Add ID</Button>
+                <Button x:Name="BTN_CancelAddUniqueID" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="80" MinHeight="25">Cancel</Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClickData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ClickedDate" Type="date" Nullable="false" />
+          <Property Name="ClickedData" Type="xml" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueStringID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="InUse" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="WinDeviceID" Type="varchar" MaxLength="50" />
+          <Property Name="WinProductID" Type="varchar" MaxLength="50" />
+          <Property Name="AndroidID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__ClickData__UserI__5FB337D6">
+          <End Role="UserData" Type="Self.UserData" Multiplicity="1" />
+          <End Role="ClickData" Type="Self.ClickData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClickData">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="ClickData" EntityType="Self.ClickData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserData" EntityType="Self.UserData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ClickData__UserI__5FB337D6" Association="Self.FK__ClickData__UserI__5FB337D6">
+            <End Role="UserData" EntitySet="UserData" />
+            <End Role="ClickData" EntitySet="ClickData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ClickTrackerDBContext" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="ClickDatas" EntityType="Models.ClickData" />
+          <EntitySet Name="UserDatas" EntityType="Models.UserData" />
+          <AssociationSet Name="FK__ClickData__UserI__5AEE82B9" Association="Models.FK__ClickData__UserI__5AEE82B9">
+            <End Role="UserData" EntitySet="UserDatas" />
+            <End Role="ClickData" EntitySet="ClickDatas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClickData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ClickedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClickedData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserData" Relationship="Models.FK__ClickData__UserI__5AEE82B9" FromRole="ClickData" ToRole="UserData" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueStringID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InUse" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WinDeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WinProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AndroidID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ClickDatas" Relationship="Models.FK__ClickData__UserI__5AEE82B9" FromRole="UserData" ToRole="ClickData" />
+        </EntityType>
+        <Association Name="FK__ClickData__UserI__5AEE82B9">
+          <End Type="Models.UserData" Role="UserData" Multiplicity="1" />
+          <End Type="Models.ClickData" Role="ClickData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClickData">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="ClickTrackerDBContext">
+          <EntitySetMapping Name="ClickDatas">
+            <EntityTypeMapping TypeName="Models.ClickData">
+              <MappingFragment StoreEntitySet="ClickData">
+                <ScalarProperty Name="ClickedData" ColumnName="ClickedData" />
+                <ScalarProperty Name="ClickedDate" ColumnName="ClickedDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDatas">
+            <EntityTypeMapping TypeName="Models.UserData">
+              <MappingFragment StoreEntitySet="UserData">
+                <ScalarProperty Name="AndroidID" ColumnName="AndroidID" />
+                <ScalarProperty Name="WinProductID" ColumnName="WinProductID" />
+                <ScalarProperty Name="WinDeviceID" ColumnName="WinDeviceID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="InUse" ColumnName="InUse" />
+                <ScalarProperty Name="UniqueStringID" ColumnName="UniqueStringID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
