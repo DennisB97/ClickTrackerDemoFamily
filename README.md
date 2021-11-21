@@ -18,3 +18,8 @@ ClickTracker features couple of adjustable settings such as automatic database s
 
 The ClickTrackerAPI is an ASP.NET WEB API 2.0 application. This API gets both calls from the React webpage and windows application.
 
+
+
+## ClickTrackerStats
+
+The ClickTrackerStats is a ReactJS website. This website provides a way to show own mouseclick data through graphs for any queried day. 
