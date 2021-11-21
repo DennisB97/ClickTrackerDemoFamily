@@ -1,7 +1,7 @@
 
 # This repository contains the whole Clicktracker functionality which includes a Windows WPF application, ASP.NET WEB API and a React webpage.
 
-### **These were done as a demo part of a web development oriented coding bootcamp. I did not have any previous web development experience other than my basic Gatsby portfolio site.**
+### **These were done as a demo part of a web development oriented coding bootcamp. I did not have any previous web development experience other than my basic Gatsby portfolio site. Personally I have the API running in Azure together with an SQL Database, but I have replaced the API strings and routes here with an example string.**
 
 
 ## Clicktracker
@@ -16,4 +16,5 @@ ClickTracker features couple of adjustable settings such as automatic database s
 
 ## ClickTrackerAPI
 
-The ClickTrackerAPI is a ASP.NET WEB API 2.0 application. 
+The ClickTrackerAPI is an ASP.NET WEB API 2.0 application. This API gets both calls from the React webpage and windows application.
+
