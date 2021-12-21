@@ -12,6 +12,7 @@ And finally make a day dictionary which can contain a whole day of mouse clicks.
 
 ClickTracker features couple of adjustable settings such as automatic database syncing, launch on startup, launch hidden (meaning no window will be opened when it launches, only tray icon). 
 
+![image](https://drive.google.com/uc?export=view&id=12tcZuVtD8lDu6NiqSHZhidR-6GjBS6We)
 
 
 ## ClickTrackerAPI
@@ -23,3 +24,5 @@ The ClickTrackerAPI is an ASP.NET WEB API 2.0 application. This API gets both ca
 ## ClickTrackerStats
 
 The ClickTrackerStats is a ReactJS website. This website provides a way to show own mouseclick data through graphs for any queried day. 
+This site has the ability to query clicks with a given ID which was received from the clicktracker application. One can then choose the dates which of data would be searched from, and the data would be shown in a graph made with the visx package.
+![image](https://drive.google.com/uc?export=view&id=1omEf44MuxVHpn3Xnkv-lZLrEztiS-S1A)
