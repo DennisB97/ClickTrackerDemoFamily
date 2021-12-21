@@ -1,0 +1,14 @@
+/* Copyright 2021 Dennis Baeckstroem  */
+.buttonIcons{
+    color: black;
+    margin: 0px;
+    padding: 0px;
+}
+
+.buttonIcons:hover {
+    color: whitesmoke;
+  }
+
+.buttonIcons:active{
+    color: darkred;
+}
